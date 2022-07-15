@@ -78,5 +78,11 @@ namespace DataAccess
                 db.SaveChanges();
             }
         }
+        public Product SearchByNameAndOrPrice(string name,decimal price)
+        {
+            using var db = new FStoreDBAssignmentContext();
+            Product p = db.Product.SingleOrDefault(x => x.ProductName == name && x.UnitPrice == price);
+            return p;
+        }
     }
 }

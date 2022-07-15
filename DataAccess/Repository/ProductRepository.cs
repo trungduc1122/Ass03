@@ -15,6 +15,8 @@ namespace DataAccess.Repository
 
         public Product GetProductById(int id) => ProductDAO.Instance.GetProductById(id);
 
+        public Product GetProductByNameAndOrPrice(string name, decimal price)=>ProductDAO.Instance.SearchByNameAndOrPrice(name, price); 
+
         public List<Product> GetProducts() => ProductDAO.Instance.GetProducts();
 
         public void InsertProduct(Product product)
