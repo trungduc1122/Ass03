@@ -19,10 +19,6 @@ namespace BusinessObject
         public decimal UnitPrice { get; set; }
         public int UnitslnStock { get; set; }
 
-        public void InsertProduct(Product product)
-        {
-            throw new NotImplementedException();
-        }
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
     }
 }
