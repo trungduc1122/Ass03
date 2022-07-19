@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessObject", "BusinessO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{5A6AAF84-C12F-4B02-8E14-2672C450FD0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eStore", "eStore\eStore.csproj", "{C36C825F-D2BF-435C-AC28-FFAF03438612}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eStore", "eStore\eStore.csproj", "{C36C825F-D2BF-435C-AC28-FFAF03438612}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

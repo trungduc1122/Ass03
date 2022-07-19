@@ -12,6 +12,8 @@ namespace DataAccess.Repository
 
        public void AddMember(Member member)=>MemberDAO.Instance.AddMember(member);
 
+        public Member CheckLogin(string email, string password) => MemberDAO.Instance.CheckLogin(email, password);
+
         public void DeleteMember(Member member)=>MemberDAO.Instance.DeleteMember(member);
 
         public Member GetMemberById(int id) => MemberDAO.Instance.GetMemberById(id);
@@ -19,5 +21,6 @@ namespace DataAccess.Repository
         public List<Member> GetMembers() => MemberDAO.Instance.GetMembers();
 
         public void UpdateMember(Member member)=>MemberDAO.Instance.UpdateMember(member);
+
     }
 }
