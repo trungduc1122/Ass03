@@ -43,7 +43,7 @@ namespace DataAccess
         {
             Member member = null;
             using var db = new FStoreDBAssignmentContext();
-            member = (Member)db.Member.Where(x => x.MemberId==id);
+            member = db.Member.SingleOrDefault(x => x.MemberId == id);
             return member;
         }
 

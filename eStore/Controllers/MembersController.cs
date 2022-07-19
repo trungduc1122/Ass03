@@ -1,162 +1,104 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+using DataAccess.Repository;
 using BusinessObject;
 
 namespace eStore.Controllers
 {
     public class MembersController : Controller
     {
-        private readonly FStoreDBAssignmentContext _context;
-
-        public MembersController(FStoreDBAssignmentContext context)
+        IMemberRepository memberRepository = null;
+        public MembersController() => memberRepository = new MemberRepository();
+        // GET: MembersController
+        public ActionResult Index()
         {
-            _context = context;
+            var list = memberRepository.GetMembers();
+            return View(list);
         }
 
-        // GET: Members
-        public async Task<IActionResult> Index()
+        // GET: MembersController/Details/5
+        public ActionResult Details(int? id)
         {
-              return _context.Member != null ? 
-                          View(await _context.Member.ToListAsync()) :
-                          Problem("Entity set 'FStoreDBAssignmentContext.Member'  is null.");
-        }
-
-        // GET: Members/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Member == null)
+            if(id == null)
             {
                 return NotFound();
-            }
-
-            var member = await _context.Member
-                .FirstOrDefaultAsync(m => m.MemberId == id);
-            if (member == null)
-            {
-                return NotFound();
-            }
-
+            }var member = memberRepository.GetMemberById(id.Value);
             return View(member);
         }
 
-        // GET: Members/Create
-        public IActionResult Create()
+        // GET: MembersController/Create
+        public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Members/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: MembersController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MemberId,Email,CompanyName,City,Country,Password")] Member member)
+        public ActionResult Create(Member member)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _context.Add(member);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(member);
-        }
-
-        // GET: Members/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Member == null)
-            {
-                return NotFound();
-            }
-
-            var member = await _context.Member.FindAsync(id);
-            if (member == null)
-            {
-                return NotFound();
-            }
-            return View(member);
-        }
-
-        // POST: Members/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MemberId,Email,CompanyName,City,Country,Password")] Member member)
-        {
-            if (id != member.MemberId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                if (ModelState.IsValid)
                 {
-                    _context.Update(member);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!MemberExists(member.MemberId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    memberRepository.AddMember(member);
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(member);
+            catch
+            {
+                return View(member);
+            }
         }
 
-        // GET: Members/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: MembersController/Edit/5
+        public ActionResult Edit(int id)
         {
-            if (id == null || _context.Member == null)
-            {
-                return NotFound();
-            }
-
-            var member = await _context.Member
-                .FirstOrDefaultAsync(m => m.MemberId == id);
-            if (member == null)
-            {
-                return NotFound();
-            }
-
-            return View(member);
+            return View();
         }
 
-        // POST: Members/Delete/5
-        [HttpPost, ActionName("Delete")]
+        // POST: MembersController/Edit/5
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public ActionResult Edit(Member member)
         {
-            if (_context.Member == null)
+            try
             {
-                return Problem("Entity set 'FStoreDBAssignmentContext.Member'  is null.");
+                if (ModelState.IsValid)
+                {
+                    memberRepository.UpdateMember(member);
+                }
+                return RedirectToAction(nameof(Index));
             }
-            var member = await _context.Member.FindAsync(id);
-            if (member != null)
+            catch
             {
-                _context.Member.Remove(member);
+                return View(member);
             }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
         }
 
-        private bool MemberExists(int id)
+        // GET: MembersController/Delete/5
+        public ActionResult Delete(int id)
         {
-          return (_context.Member?.Any(e => e.MemberId == id)).GetValueOrDefault();
+            return View();
+        }
+
+        // POST: MembersController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(Member member)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    memberRepository.AddMember(member);
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View(member);
+            }
         }
     }
 }

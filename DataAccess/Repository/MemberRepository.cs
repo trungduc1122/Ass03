@@ -18,6 +18,6 @@ namespace DataAccess.Repository
 
         public List<Member> GetMembers() => MemberDAO.Instance.GetMembers();
 
-        public void UpdateMember(Member member)=>MemberDAO.Instance.UpdateMember(member);   
+        public void UpdateMember(Member member)=>MemberDAO.Instance.UpdateMember(member);
     }
 }
