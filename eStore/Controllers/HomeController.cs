@@ -29,6 +29,21 @@ namespace eStore.Controllers
         {
             return RedirectToAction("Index","Members");
         }
+        //ProductController/Index
+        public ActionResult ProductIndex()
+        {
+            return RedirectToAction("Index", "Products");
+        }
+        //OrderController/Index
+        public ActionResult OrderIndex()
+        {
+            return RedirectToAction("Index", "Orders");
+        }
+        //OrderDetailController/Index
+        public ActionResult OrderDetailIndex()
+        {
+            return RedirectToAction("Index", "OrderDetails");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
