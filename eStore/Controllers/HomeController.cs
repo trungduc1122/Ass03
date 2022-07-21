@@ -23,6 +23,8 @@ namespace eStore.Controllers
         {
             return View();
         }
+
+        //MemberController/Index
         public ActionResult MemberIndex()
         {
             return RedirectToAction("Index","Members");

@@ -100,6 +100,7 @@ namespace eStore.Controllers
                 return View(member);
             }
         }
+        //HomeController/Index
         public ActionResult Home()
         {
             return RedirectToAction("Index", "Home");
