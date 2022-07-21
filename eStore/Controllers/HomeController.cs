@@ -7,7 +7,8 @@ namespace eStore.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        
+        
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -21,6 +22,10 @@ namespace eStore.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+        public ActionResult MemberIndex()
+        {
+            return RedirectToAction("Index","Members");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
