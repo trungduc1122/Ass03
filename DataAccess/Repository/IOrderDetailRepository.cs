@@ -14,5 +14,6 @@ namespace DataAccess.Repository
         void InsertOrderDetail(OrderDetail orderDetail);
         void DeleteOrderDetail(int orderDetailId);
         void UpdateOrderDetail(OrderDetail orderDetail);
+        void AddOrderDetail(OrderDetail orderDetail);
     }
 }

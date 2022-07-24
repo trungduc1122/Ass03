@@ -14,5 +14,7 @@ namespace DataAccess.Repository
         public void InsertOrderDetail(OrderDetail orderDetail) => OrderDetailDAO.Instance.AddNew(orderDetail);
         public void DeleteOrderDetail(int orderDetailId) => OrderDetailDAO.Instance.Remove(orderDetailId);
         public void UpdateOrderDetail(OrderDetail orderDetail) => OrderDetailDAO.Instance.Update(orderDetail);
+
+        public void AddOrderDetail(OrderDetail orderDetail) => OrderDetailDAO.Instance.AddNew(orderDetail);
     }
 }

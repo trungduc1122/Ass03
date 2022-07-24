@@ -29,5 +29,7 @@ namespace DataAccess.Repository
         }
 
         public void UpdateOrder(Order order) => OrderDAO.Instance.UpdateOrder(order);
+
+        public Order GetOrderById(int id) => OrderDAO.Instance.GetOrderById(id);
     }
 }

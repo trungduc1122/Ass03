@@ -18,5 +18,6 @@ namespace DataAccess.Repository
 
         public void DeleteOrder(Order order);
 
+        public Order GetOrderById (int id);
     }
 }
